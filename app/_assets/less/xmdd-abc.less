@@ -1,0 +1,246 @@
+/* Variables */
+@import "variables.less";
+
+/* Mixins */
+@import "mixins.less";
+@import "_mixins";
+
+// icheck default image
+@icheck_default_image: '../images/iCheck/skins/flat/green.png';
+/* Empty. Add your own CSS if you like */
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button{
+  -webkit-appearance: none !important;
+  margin: 0;
+}
+
+input[type="number"]{-moz-appearance:textfield;}
+
+.navbar-apply {
+  background-color: #019858;
+  border: 0;
+  margin-bottom: 0;
+  min-height: 40px;
+  .navbar-text {
+    color: #fff;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    line-height: 20px;
+    font-size: 16px;
+    text-align: center;
+    font-weight: 700;
+  }
+}
+
+html,.panel.ng-scope {
+  /* 	background-color: #f6fff6; */
+  -webkit-box-shadow: 0 0px 0px rgba(0,0,0,0);
+  box-shadow: 0 0px 0px rgba(0,0,0,0);
+}
+
+.panel-apply {
+  border: 0;
+  -webkit-box-shadow: 0 0px 0px rgba(0,0,0,.05);
+  box-shadow: 0 0px 0px rgba(0,0,0,.05);
+}
+
+.legend {
+  font-size: 14px;
+  text-align: right;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 15px;
+  line-height: inherit;
+  color: #333;
+  border: 0;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.btn-success {
+  background-color: #01b468;
+  font-weight: 700;
+}
+
+.btn-success[disabled] {
+  background-color: #eee;
+  border-color: #ccc;
+  color: #9f9f9f;
+}
+
+.btn-success.disabled.focus, .btn-success.disabled:focus, .btn-success.disabled:hover, .btn-success[disabled].focus, .btn-success[disabled]:focus, .btn-success[disabled]:hover, fieldset[disabled] .btn-success.focus, fieldset[disabled] .btn-success:focus, fieldset[disabled] .btn-success:hover {
+  background-color: #eee;
+  border-color: #ccc;
+  color: #9f9f9f;
+}
+
+.btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus {
+  outline: none;
+}
+
+input[type=radio]:focus {
+  outline: none;
+}
+
+.checkbox input[type=checkbox], .checkbox-inline input[type=checkbox], .radio input[type=radio], .radio-inline input[type=radio] {
+  margin-top: 0;
+}
+
+.checkbox, .radio {
+  margin-bottom: 15px;
+  label {
+    padding-left: 0;
+  }
+}
+
+input[type=checkbox], input[type=radio] {
+  display:none;
+}
+
+input[type=checkbox] + label:before {
+  content: '';
+  display:inline-block;
+  width:20px;
+  height:20px;
+  margin:-2px 4px 0 0;
+  vertical-align:middle;
+  background:url(@icheck_default_image) 0 0 no-repeat;
+  background-position: 0 0px;
+  background-size: 176px 22px;
+  cursor:pointer;
+}
+
+input[type=checkbox]:checked + label:before {
+  background:url(@icheck_default_image) -22px 0 no-repeat;
+  background-position: -22px 0px;
+  background-size: 176px 22px;
+}
+
+
+input[type=radio] + label:before {
+  content: '';
+  display:inline-block;
+  width:20px;
+  height:20px;
+  margin:-2px 4px 0 0;
+  vertical-align:middle;
+  background:url(@icheck_default_image) -88px 0px no-repeat;
+  background-size: 176px 22px;
+  cursor:pointer;
+}
+
+input[type=radio]:checked + label:before {
+  background:url(@icheck_default_image) -110px 0px no-repeat;
+  background-size: 176px 22px;
+}
+
+
+.input-group-addon-area {
+  background-color: #fff;
+}
+
+/*在修改的表单项上才显示错误信息*/
+input.ng-dirty.ng-invalid {
+  border: 1px solid red;
+}
+
+
+.index-banner {
+  width: 100%;
+}
+
+img {
+  display: block;
+  font-size: 0;
+}
+
+.img-index {
+  width: 100%;
+  display: block;
+  font-size: 0;
+}
+
+.img-index-go-panel {
+  width: 100%;
+  text-align: center;
+}
+
+.img-index-go {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.form-group {
+  position: relative;
+}
+
+.error {
+  position: absolute;
+  top: 2px;
+  right:0;
+  width: 100%;
+  display: block;
+  text-align: right;
+  color: red;
+}
+
+input.ng-invalid-sameascellphone {
+  border: 1px solid red;
+}
+
+.panel-license {
+  text-align:justify;
+  border-bottom-width: 0;
+  .title {
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .subject {
+    font-size: 16px;
+    font-weight: 900;
+    padding: 5px 0px;
+  }
+
+}
+
+a, a:active,a:focus, a:visited,a:hover {
+  text-decoration: none;
+}
+
+.finally {
+  background-color: #D9D4FC;
+}
+
+
+.input-group-addon-vcode {
+  padding: 0;
+  border: none;
+  .button-vcode {
+    height: 34px;
+    min-width:120px;
+    padding: 1px 10px;
+    border: 1px solid #01b468;
+    border-left-width: 0;
+    background: #01b468;
+    color: #fff;
+
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+
+    &:disabled {
+      background-color: #eee;
+      color: #555;
+      border-color: #ccc;
+    }
+    &:active, &:focus, &:visited {
+      background: #01b468;
+      color: #fff;
+      border: none;
+      outline: none;
+    }
+  }
+}
+
+

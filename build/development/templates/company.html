@@ -1,0 +1,118 @@
+<div class="panel panel-default panel-apply">
+  <div class="panel-body">
+    <form name="form" ng-submit="submitForm(form.$valid)" novalidate>
+      <fieldset>
+        <div class="legend"><strong>您的单位信息</strong></div>
+        <div class="form-group">
+          <label for="companyName">单位名称</label>
+          <input ng-model="companyInfo.companyName" type="text" name="companyName" required class="form-control" id="companyName" placeholder="请输入您的单位名称">
+          <div class="error" ng-messages="form.companyName.$error">
+            <small class="error" ng-message="required">单位名称（*必填）</small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="companyAddr">单位地址</label>
+          <input ng-model="companyInfo.companyAddr" type="text" name="companyAddr" required ng-minlength="10" ng-maxlength="50" class="form-control" id="companyAdd" placeholder="请输入您的单位地址">
+          <div class="error" ng-messages="form.companyAddr.$error">
+            <small class="error" ng-message="required">单位地址（*必填）</small>
+            <small class="error" ng-message="minlength">单位地址不能少于10个字</small>
+            <small class="error" ng-message="maxlength">单位地址不能超过50个字</small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="companyTel">单位电话</label>
+          <input ng-model="companyInfo.companyTel" type="tel" name="companyTel" required  maxlength="20" ng-minlength="12" ng-maxlength="20" class="form-control" id="companyTel" placeholder="请输入您的单位电话">
+          <div class="error" ng-messages="form.companyTel.$error">
+            <small class="error" ng-message="required">单位电话（*必填）</small>
+            <small class="error" ng-message="minlength">单位电话不能少于12位</small>
+            <small class="error" ng-message="maxlength">单位电话不能超过20位</small>
+          </div>
+        </div>
+      </fieldset>
+      <fieldset>
+        <div class="legend"><strong>您的联系人信息</strong></div>
+        <div class="form-group">
+          <label for="contactsName">联系人姓名</label>
+          <input ng-model="companyInfo.contactsName" type="text" name="contactsName" required sameasname ng-pattern="/^([\u4e00-\u9fa5 ]|[a-z\/ ])+$/" class="form-control" id="contactsName"  placeholder="请输入联系人姓名">
+          <div class="error" ng-messages="form.contactsName.$error">
+            <small class="error" ng-message="required">联系人姓名（*必填）</small>
+            <small class="error" ng-message="sameasname">联系人不能和申请人相同</small>
+            <small class="error" ng-message="pattern">请输入正确的中英文字符</small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="contactsRel">联系人关系</label>
+          <div class="radio">
+<!--             <label ng-repeat="contactsRel in contactsRels" class="radio-inline" for="{{contactsRel}}">
+              <input ng-model="companyInfo.contactsRel"
+                     type="radio"
+                     ng-value="contactsRel"
+                     id="{{contactsRel}}"
+                     name="contactsRel" required single>
+              <label for="{{contactsRel}}"> {{contactsRel}}</label>
+            </label> -->
+
+            <label for="配偶" class="radio-inline">
+              <input ng-model="companyInfo.contactsRel" type="radio" name="contactsRel" id="配偶" value="配偶">
+              <label for="配偶"> 配偶</label>
+            </label>
+            <label for="亲属" class="radio-inline">
+              <input ng-model="companyInfo.contactsRel" type="radio" name="contactsRel" id="亲属" value="亲属">
+              <label for="亲属"> 亲属</label>
+            </label>
+            <label for="朋友" class="radio-inline">
+              <input ng-model="companyInfo.contactsRel" type="radio" name="contactsRel" id="朋友" value="朋友">
+              <label for="朋友"> 朋友</label>
+            </label>
+            <label for="其他" class="radio-inline">
+              <input ng-model="companyInfo.contactsRel" type="radio" name="contactsRel" required single id="其他" value="其他">
+              <label for="其他"> 其他</label>
+            </label>
+          </div>
+          <div class="error" ng-messages="form.contactsRel.$error">
+            <small class="error" ng-message="required">联系人关系（*必选）</small>
+            <small class="error" ng-message="single">您的婚姻状况为未婚，关系不能为配偶</small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="contactsGender">联系人性别</label>
+          <div class="radio">
+<!--             <label ng-repeat="contactsGender in contactsGenders" class="radio-inline" for="{{contactsGender}}">
+              <input ng-model="companyInfo.contactsGender"
+                     type="radio"
+                     ng-value="contactsGender"
+                     id="{{contactsGender}}"
+                     name="contactsGender" required gender>
+              <label for="{{contactsGender}}"> {{contactsGender}}</label>
+            </label> -->
+            <label for="男性" class="radio-inline">
+              <input ng-model="companyInfo.contactsGender" type="radio" name="contactsGender" id="男性" value="男性">
+              <label for="男性"> 男性</label>
+            </label>
+            <label for="女性" class="radio-inline">
+              <input ng-model="companyInfo.contactsGender" type="radio" name="contactsGender" contactsrel="{{companyInfo.contactsRel}}" required gender id="女性" value="女性">
+              <label for="女性"> 女性</label>
+            </label>
+          </div>
+          <div class="error" ng-messages="form.contactsGender.$error">
+            <small class="error" ng-message="required">联系人性别（*必选）</small>
+            <small class="error" ng-message="gender">联系人为配偶时，性别不能相同</small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="contactsTel">联系人电话</label>
+          <input ng-model="companyInfo.contactsTel" type="tel" name="contactsTel" required sameascellphone ng-minlength="8" ng-maxlength="20" class="form-control" id="contactsTel" placeholder="请输入联系人电话">
+          <div class="error" ng-messages="form.contactsTel.$error">
+            <small class="error" ng-message="required">联系人电话（*必填）</small>
+            <small class="error" ng-message="minlength">联系人电话不能少于8位</small>
+            <small class="error" ng-message="maxlength">联系人电话不能超过20位</small>
+            <small class="error" ng-message="sameascellphone">联系人电话不能和申请人电话相同</small>
+          </div>
+        </div>
+      </fieldset>
+
+      <button type="submit" ng-disabled="form.$invalid" class="btn btn-default btn-lg btn-success btn-block">下一步: 选择银行网点</button>
+    </form>
+
+  </div>
+</div>

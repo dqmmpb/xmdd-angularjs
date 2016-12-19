@@ -1,0 +1,23 @@
+{
+  "name": "xmdd-abc2",
+  "private": true,
+  "dependencies": {
+    "modernizr": "~2.8.1",
+    "angular": "angularjs#^1.5.6",
+    "fastclick": "^1.0.6",
+    "angular-ui-router": "^0.3.0",
+    "bootstrap": "^3.3.6",
+    "angular-messages": "^1.5.6"
+  },
+  "devDependencies": {
+    "mocha": "~2.3.4",
+    "chai": "~3.4.2"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "dist/css/bootstrap.css"
+      ]
+    }
+  }
+}

@@ -1,0 +1,22 @@
+<div class="index-banner">
+	<img src="assets/images/index-banner.png" class="img-index">
+	<div class="img-index-go-panel">
+		<a ui-sref="step.base">
+			<img src="assets/images/go.png" class="img-index-go">
+		</a>
+	</div>
+	<img src="assets/images/index-main.png" class="img-index">
+</div>
+
+<script>
+	var querySearch = window.location.search;
+	querySearch = querySearch.substring(1);
+	var searchArr = querySearch.split("&");
+	var searchObj = {};
+	for (var i = 0; i < searchArr.length; i++) {
+		var keyToValue = searchArr[i];
+		var keyValueArr = keyToValue.split("=");
+		searchObj[keyValueArr[0]] = keyValueArr[1];
+	}
+	window.applyFrom = searchObj.fr;
+</script>

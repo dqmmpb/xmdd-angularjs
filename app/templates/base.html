@@ -1,0 +1,156 @@
+
+<div class="panel panel-default panel-apply">
+  <div class="panel-body">
+    <form name="form" ng-submit="submitForm(form.$valid)" novalidate>
+      <fieldset>
+        <div class="form-group">
+          <label for="abcRc">推荐码</label>
+          <input ng-model="baseInfo.abcRc" type="text" name="abcRc" ng-minlength="7" ng-maxlength="10" class="form-control" id="abcRc" placeholder="请输入您的推荐码">
+          <div class="error" ng-messages="form.abcRc.$error">
+            <small class="error" ng-message="minlength">推荐码不能少于7个字</small>
+            <small class="error" ng-message="maxlength">推荐码不能超过10个字</small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="cellphone">手机号</label>
+          <input ng-model="baseInfo.cellphone" type="tel" name="cellphone" maxlength="11" ng-minlength="11" ng-maxlength="11" required class="form-control" id="cellphone" placeholder="请填写您的手机号">
+          <div class="error" ng-messages="form.cellphone.$error">
+            <small class="error" ng-message="required">手机号（*必填）</small>
+            <small class="error" ng-message="minlength">请输入11位手机号</small>
+            <small class="error" ng-message="maxlength">请输入11位手机号</small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="cardType">卡种</label>
+          <div ng-repeat="cardType in cardTypes" class="radio">
+            <label for="{{cardType}}">
+              <input ng-model="baseInfo.cardType"
+                     type="radio"
+                     ng-value="cardType"
+                     id="{{cardType}}"
+                     name="cardType" required>
+              <label for="{{cardType}}"> {{cardType}}</label>
+            </label>
+          </div>
+          <div class="error" ng-messages="form.cardType.$error">
+            <small class="error" ng-message="required">请选择信用卡种类</small>
+          </div>
+        </div>
+      </fieldset>
+      <fieldset>
+        <div class="legend"><strong>您的个人信息</strong></div>
+        <div class="form-group">
+          <label for="name">姓名</label>
+          <input ng-model="baseInfo.name" type="text" name="name" required ng-pattern="/^([\u4e00-\u9fa5 ]|[a-z\/ ])+$/" class="form-control" id="name" placeholder="请输入您的姓名">
+          <div class="error" ng-messages="form.name.$error">
+            <small class="error" ng-message="required">姓名（*必填）</small>
+            <small class="error" ng-message="pattern">请输入正确的中英文字符</small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="maritalStatus">婚姻状况</label>
+          <div ng-repeat="maritalStatus in maritalStatuses" class="radio">
+            <label for="maritalStatus_{{maritalStatus}}">
+              <input ng-model="baseInfo.maritalStatus"
+                     type="radio"
+                     ng-value="maritalStatus"
+                     id="maritalStatus_{{maritalStatus}}"
+                     name="maritalStatus" required>
+              <label for="maritalStatus_{{maritalStatus}}"> {{maritalStatus}}</label>
+            </label>
+          </div>
+          <div class="error" ng-messages="form.maritalStatus.$error">
+            <small class="error" ng-message="required">婚姻状况（*必选）</small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="income">个人年收入</label>
+          <div class="input-group">
+            <input ng-model="baseInfo.income" type="number" name="income" required min="2" max="200" class="form-control" id="income" placeholder="请输入您的年收入（2万～200万）">
+            <div class="input-group-addon">万元</div>
+          </div>
+          <div class="error" ng-messages="form.income.$error">
+            <small class="error" ng-message="required">个人年收入（*必填）</small>
+            <small class="error" ng-message="min">个人年收入不能低于2万元</small>
+            <small class="error" ng-message="max">个人年收入不能高于200万元</small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="idcardNo">身份证号</label>
+          <input style="text-transform:uppercase;" ng-model="baseInfo.idcardNo" type="text" name="idcardNo" required idcard class="form-control" id="idcardNo" placeholder="请输入您的身份证号">
+          <div class="error" ng-messages="form.idcardNo.$error">
+            <small class="error" ng-message="required">身份证号（*必填）</small>
+<!--             <small class="error" ng-show="form.idcardNo.$error.minlength">请输入18位身份证号</small>
+            <small class="error" ng-show="form.idcardNo.$error.maxlength">请输入18位身份证号</small> -->
+            <small class="error" ng-message="idcard ">请输入正确的18位身份证号</small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="idcardAddr">身份证地址</label>
+          <input ng-change="idcardAddrChange()" ng-model="baseInfo.idcardAddr" type="text" name="idcardAddr" required ng-minlength="10" ng-maxlength="50"  class="form-control" id="idcardAddr" placeholder="请输入您身份证上的户籍地址">
+          <div class="error" ng-messages="form.idcardAddr.$error">
+            <small class="error" ng-message="required">身份证地址（*必填）</small>
+            <small class="error" ng-message="minlength">地址不能少于10个字</small>
+            <small class="error" ng-message="maxlength">地址不能超过50个字</small>
+          </div>
+        </div>
+      </fieldset>
+      <fieldset>
+        <div class="legend"><strong>您的住房信息</strong></div>
+        <div class="form-group">
+          <label for="propertyStatus">住房状况</label>
+          <div ng-repeat="propertyStatus in propertyStatuses" class="radio">
+            <label for="propertyStatus_{{propertyStatus}}">
+              <input  ng-change="propertyStatusChange()" ng-model="baseInfo.propertyStatus"
+                     type="radio"
+                     ng-value="propertyStatus"
+                     id="propertyStatus_{{propertyStatus}}"
+                     name="propertyStatus" required>
+              <label for="propertyStatus_{{propertyStatus}}"> {{propertyStatus}}</label>
+            </label>
+          </div>
+          <div class="error" ng-messages="form.propertyStatus.$error">
+            <small class="error" ng-message="required">住房状况（*必选）</small>
+          </div>
+        </div>
+        <div ng-if="baseInfo.propertyStatus == '自购有贷款房'" class="form-group">
+          <label for="installment">月还款</label>
+          <div class="input-group">
+            <input ng-model="baseInfo.installment" type="number" name="installment" required min="1" max="2000000" class="form-control" id="installment" placeholder="请输入您的月还款金额">
+            <div class="input-group-addon">元</div>
+          </div>
+          <div class="error" ng-messages="form.installment.$error">
+            <small class="error" ng-message="required">月还款额（*必填）</small>
+            <small class="error" ng-message="min">月还款额不能低于1元</small>
+            <small class="error" ng-message="max">月还款额不能超过200万元</small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="houseAddr">家庭地址</label>
+          <div class="checkbox">
+            <label for="sameas" class="checkbox-inline">
+              <input ng-change="sameAsChange()" ng-model="baseInfo.sameas" type="checkbox" name="sameas" id="sameas" value="true">
+              <label for="sameas"> 与身份证地址相同</label>
+            </label>
+          </div>
+<!--           <div ng-if="!baseInfo.sameas" class="input-group">
+            <div class="input-group-addon input-group-addon-area">浙江省杭州市</div>
+            <input ng-model="baseInfo.houseAddr" type="text" name="houseAddr" required ng-minlength="4" maxlength="44" class="form-control" id="houseAddr" placeholder="请输入您的家庭地址">
+          </div> -->
+          <div ng-if="!baseInfo.sameas">
+            <input ng-model="baseInfo.houseAddr" type="text" name="houseAddr" required ng-pattern="/^浙江省杭州市/" ng-minlength="10" ng-maxlength="50" class="form-control" id="houseAddr" placeholder="家庭地址必须以“浙江省杭州市”开头" value="浙江省杭州市">
+            <div class="error" ng-messages="form.houseAddr.$error">
+              <small class="error" ng-message="required">必须以“浙江省杭州市”开头</small>
+              <small class="error" ng-message="pattern">必须以“浙江省杭州市”开头</small>
+              <small class="error" ng-message="minlength">地址不能少于10个字</small>
+              <small class="error" ng-message="maxlength">地址不能超过50个字</small>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+
+      <button type="submit" ng-disabled="form.$invalid" class="btn btn-default btn-lg btn-success btn-block">下一步: 填写单位信息</button>
+    </form>
+  </div>
+</div>

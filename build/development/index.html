@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>信用卡办卡申请</title>
+
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+
+    <link type="image/x-icon" href="favicon.ico" rel="shortcut icon">
+
+    <!-- build:css assets/css/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css assets/css/xmdd.css -->
+    <link rel="stylesheet" href="/assets/css/xmdd.css">
+    <!-- endbuild -->
+
+    <base href="/paaweb/abc-card-apply/">
+
+  </head>
+  <body ng-app="starter">
+    <input type="hidden" id="ch" value="1046">
+    <input type="hidden" id="fr" value="weshare">
+    <div ui-view></div>
+  </body>
+
+    <!-- build:js assets/scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/modernizr/modernizr.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/fastclick/lib/fastclick.js"></script>
+    <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="/bower_components/angular-messages/angular-messages.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js assets/scripts/app-abc.js -->
+    <script src="_assets/scripts/controllers.js"></script>
+    <script src="_assets/scripts/services.js"></script>
+    <script src="_assets/scripts/app.js"></script>
+    <!-- endbuild -->
+
+    <script src="/paaweb/resources/js/json/json2.js" type="text/javascript"></script>
+    <script src="/paaweb/resources/js/base/js-bridge-init.js" type="text/javascript"></script>
+
+    <!-- build:js assets/scripts/apply-index-bridge.js -->
+    <script src="_assets/scripts/apply-index-bridge.js"></script>
+    <!-- endbuild -->
+
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+
+    <!-- build:js assets/scripts/weshare.js -->
+    <script src="_assets/scripts/weshare.js"></script>
+    <!-- endbuild -->
+
+</html>

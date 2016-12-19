@@ -1,0 +1,79 @@
+<div class="panel panel-default panel-apply">
+  <div class="panel-body">
+    <form name="form" ng-submit="submitForm(form.$valid)" novalidate>
+      <fieldset>
+        <div class="legend"><strong>您的领卡信息</strong></div>
+        <div class="form-group">
+          <label for="district">领卡地区</label>
+          <select ng-model="networkInfo.district" ng-options="district.d for district in nets track by district.d" name="district" class="form-control">
+            <option value="">请选择地区</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="net">领卡网点</label>
+          <select ng-model="networkInfo.net" ng-options="net.n for net in networkInfo.district.c track by net.n" name="net" required netneed class="form-control">
+            <option value="">请选择网点</option>
+          </select>
+          <div class="error" ng-messages="form.net.$error">
+            <small class="error" ng-message="required">领卡网点（*必选）</small>
+            <small class="error" ng-message="netneed">领卡网点（*必选）</small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="billType">账单类型</label>
+          <div ng-repeat="billType in billTypes" class="radio">
+            <label for="{{billType}}">
+              <input ng-model="networkInfo.billType"
+                     type="radio"
+                     ng-value="billType"
+                     id="{{billType}}"
+                     name="billType" required>
+              <label for="{{billType}}"> {{billType}}</label>
+            </label>
+          </div>
+          <div class="error" ng-messages="form.billType.$error">
+            <small class="error" ng-message="required">账单类型（*必选）</small>
+          </div>
+        </div>
+        <div ng-if="networkInfo.billType == '电子账单'" class="form-group">
+          <label for="email">电子邮箱</label>
+          <input ng-model="networkInfo.email" type="email" name="email" class="form-control" required id="email" placeholder="请输入您的电子邮箱">
+          <div class="error" ng-messages="form.email.$error">
+            <small class="error" ng-message="required">电子邮箱（*必填）</small>
+            <small class="error" ng-message="email">请输入正确的邮箱地址</small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="cellphone">手机号</label>
+          <div class="input-group">
+            <input ng-disabled="true" ng-model="baseInfo.cellphone" type="tel" name="cellphone" maxlength="11" ng-minlength="11" ng-maxlength="11" required class="form-control" id="cellphone" placeholder="请填写您的手机号">
+            <div class="input-group-addon input-group-addon-vcode"><button ng-disabled="counter.disabled || counter.counting" ng-click="getVCode($event)" class="button-vcode">获取验证码</button></div>
+          </div>
+          <div class="error" ng-messages="!form.cellphone.$invalid && form.vcode.$error">
+            <small class="error" ng-message="required">验证码（*必填）</small>
+            <small class="error" ng-message="minlength">请输入4位验证码</small>
+            <small class="error" ng-message="maxlength">请输入4位验证码</small>
+          </div>
+        </div>
+        <div class="form-group">
+          <input ng-model="networkInfo.vcode" type="text" name="vcode" required maxlength="4" ng-minlength="4" ng-maxlength="4" class="form-control" id="vcode" placeholder="请输入验证码（验证码为4位数字）">
+        </div>
+        <div class="form-group">
+          <label for="agree">协议条款</label>
+          <div class="checkbox">
+            <label for="agree" class="checkbox-inline">
+              <input ng-model="networkInfo.agree" type="checkbox" name="agree" required id="agree" value="true">
+              <label for="agree"> 本人已阅读并理解<a ng-click="licenseXykzc()">《中国农业银行金穗信用卡章程》</a>和<a ng-click="licenseLyhy()">《金穗贷记卡领用合约（个人卡）》</a>的全部内容，自愿遵守章程和领用合约规定，并关注到贵行对相关条款（特别是黑色字体款）的提示。</label>
+            </label>
+          </div>
+          <div class="error" ng-messages="form.agree.$error">
+            <small class="error" ng-message="required">请仔细阅读并同意协议条款</small>
+          </div>
+        </div>
+      </fieldset>
+
+      <button type="submit" ng-disabled="form.$invalid" class="btn btn-default btn-lg btn-success btn-block">填写无误，提交申请表</button>
+    </form>
+
+  </div>
+</div>
